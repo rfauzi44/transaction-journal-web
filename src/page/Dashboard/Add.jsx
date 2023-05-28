@@ -179,7 +179,7 @@ const Add = ({ getTransactions, setIsAdding }) => {
                       </td>
 
                       <td n-title="sub">{subtotal(item).toLocaleString()}</td>
-                      <td n-title="Del" className="text-center">
+                      <td n-title="del" className="text-center">
                         <DashCircle
                           color="red"
                           onClick={() => deleteItem(index)}
