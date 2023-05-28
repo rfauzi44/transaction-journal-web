@@ -4,7 +4,7 @@ Web Client for Transaction Journal. Built with React.
 
 ## 🔥 Showcase
 
-- [DEMO](https://theauth-web.vercel.app)
+- [DEMO](https://transaction-journal-web.vercel.app)
 - [API Repository](https://github.com/rfauzi44/transaction-journal-api)
 
 ## 💻 Built with
