@@ -18,7 +18,7 @@ Web Client for Transaction Journal. Built with React.
 
 ## 🛠️ Installation Steps
 
-1. [ RECOMMENDED ] Makes sure you have successfully installed [The Auth API](https://github.com/rfauzi44/transaction-journal-api)
+1. [ RECOMMENDED ] Makes sure you have successfully installed [Transaction Journal API](https://github.com/rfauzi44/transaction-journal-api)
 
 ```bash
 test http://localhost:3000
@@ -27,7 +27,7 @@ test http://localhost:3000
 1. Clone this project
 
 ```bash
-git clone https://github.com/rfauzi44/transaction-journal-api.git
+git clone https://github.com/rfauzi44/transaction-journal-web.git
 ```
 
 2. Create .env.local file (copy and set from .env.local.example)
