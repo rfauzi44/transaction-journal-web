@@ -10,7 +10,7 @@ import {
   Col,
   Table,
   Alert,
-  Spinner
+  Spinner,
 } from "react-bootstrap";
 
 import Swal from "sweetalert2";
@@ -34,7 +34,7 @@ const Add = ({ getTransactions, setIsAdding }) => {
   const handleAdd = async (event) => {
     event.preventDefault();
     try {
-      setButtonLoad()
+      setButtonLoad(true);
       const transactionData = {
         code: code,
         date: date,
@@ -232,7 +232,7 @@ const Add = ({ getTransactions, setIsAdding }) => {
               </Button>
 
               <Button variant="success" className="fw-bold" type="submit">
-              {buttonLoad && (
+                {buttonLoad && (
                   <Spinner
                     as="span"
                     animation="grow"
@@ -240,6 +240,7 @@ const Add = ({ getTransactions, setIsAdding }) => {
                     aria-hidden="true"
                   />
                 )}
+                <span className="visually-hidden">Loading...</span>
                 Submit
               </Button>
             </div>

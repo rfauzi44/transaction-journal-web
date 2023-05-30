@@ -29,7 +29,7 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
-      setButtonLoad()
+      setButtonLoad(true);
       const transactionData = {
         code: `${selectedTransaction.code}`,
         date: date,
