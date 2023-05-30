@@ -10,6 +10,7 @@ import {
   Col,
   Table,
   Alert,
+  Spinner
 } from "react-bootstrap";
 
 import Swal from "sweetalert2";
@@ -28,10 +29,12 @@ const Add = ({ getTransactions, setIsAdding }) => {
   const [isPaid, setIsPaid] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [buttonLoad, setButtonLoad] = useState(false);
 
   const handleAdd = async (event) => {
     event.preventDefault();
     try {
+      setButtonLoad()
       const transactionData = {
         code: code,
         date: date,
@@ -178,8 +181,14 @@ const Add = ({ getTransactions, setIsAdding }) => {
                         />
                       </td>
 
-                      <td n-title="sub">{subtotal(item).toLocaleString()}</td>
-                      <td n-title="Del" className="text-center">
+                      <td n-title="sub">
+                        <Form.Control
+                          disabled
+                          value={subtotal(item).toLocaleString()}
+                        />
+                      </td>
+
+                      <td n-title="del" className="text-center">
                         <DashCircle
                           color="red"
                           onClick={() => deleteItem(index)}
@@ -216,13 +225,21 @@ const Add = ({ getTransactions, setIsAdding }) => {
 
             <div className="d-flex justify-content-between mt-3">
               <Button
-                variant="outline-secondary"
+                variant="outline-danger"
                 onClick={() => setIsAdding(false)}
               >
                 Cancel
               </Button>
 
               <Button variant="success" className="fw-bold" type="submit">
+              {buttonLoad && (
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    aria-hidden="true"
+                  />
+                )}
                 Submit
               </Button>
             </div>

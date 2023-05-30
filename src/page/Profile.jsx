@@ -13,10 +13,10 @@ const Profile = () => {
       <Container className="py-5">
         <Card>
           <Card.Header as="h4" className="fw-bold py-3">
-            My Profile
+            Profile
           </Card.Header>
           <Card.Body>
-            <ListGroup variant="flush">
+            <ListGroup>
               <ListGroup.Item>
                 <strong>Username</strong> {data.username}
               </ListGroup.Item>

@@ -8,6 +8,7 @@ import {
   Alert,
   Nav,
   FloatingLabel,
+  Spinner,
 } from "react-bootstrap";
 import MyNavbar from "../component/MyNavbar";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +28,7 @@ function Login() {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [buttonLoad, setButtonLoad] = useState(false);
 
   const onChangeInput = (event) => {
     event.preventDefault();
@@ -38,6 +40,7 @@ function Login() {
   async function setLogin(event) {
     event.preventDefault();
     try {
+      setButtonLoad(true)
       const res = await api.requests({
         method: "POST",
         url: "/auth/login",
@@ -112,6 +115,15 @@ function Login() {
                 onClick={setLogin}
                 className="w-100"
               >
+                {buttonLoad && (
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    aria-hidden="true"
+                  />
+                )}
+                <span className="visually-hidden">Loading...</span>
                 Login
               </Button>
             </Form>

@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Button, Col, Container, Form, Row, Alert, Nav, FloatingLabel } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Row,
+  Alert,
+  Nav,
+  FloatingLabel,
+  Spinner
+} from "react-bootstrap";
 import MyNavbar from "../component/MyNavbar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +31,7 @@ const Signup = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [buttonLoad, setButtonLoad] = useState(false);
 
   const onChangeInput = (event) => {
     event.preventDefault();
@@ -32,12 +43,12 @@ const Signup = () => {
   const register = async (event) => {
     event.preventDefault();
     try {
+      setButtonLoad(true);
       const res = await api.requests({
         method: "POST",
         url: "/auth/register",
         data: User,
       });
-
 
       Swal.fire({
         icon: "success",
@@ -63,15 +74,15 @@ const Signup = () => {
   return (
     <>
       <MyNavbar />
-        <Container className="py-4 px-4">
-          <Row className="justify-content-center">
-            <Col md={6} lg={4}>
-              <h1 className="text-center m-4">Create ur account</h1>
-              <p className="text-center m-4">
+      <Container className="py-4 px-4">
+        <Row className="justify-content-center">
+          <Col md={6} lg={4}>
+            <h1 className="text-center m-4">Create ur account</h1>
+            <p className="text-center m-4">
               Before go to dashboard, signup first.
-              </p>
-              <Form onSubmit={register}>
-                <Form.Group className="mb-3">
+            </p>
+            <Form onSubmit={register}>
+              <Form.Group className="mb-3">
                 <FloatingLabel label="Username">
                   <Form.Control
                     type="text"
@@ -80,10 +91,10 @@ const Signup = () => {
                     onChange={onChangeInput}
                     required
                   />
-                  </FloatingLabel>
-                </Form.Group>
+                </FloatingLabel>
+              </Form.Group>
 
-                <Form.Group className="mb-3">
+              <Form.Group className="mb-3">
                 <FloatingLabel label="Email">
                   <Form.Control
                     type="email"
@@ -92,10 +103,10 @@ const Signup = () => {
                     onChange={onChangeInput}
                     required
                   />
-                  </FloatingLabel>
-                </Form.Group>
+                </FloatingLabel>
+              </Form.Group>
 
-                <Form.Group className="mb-3">
+              <Form.Group className="mb-3">
                 <FloatingLabel label="Name">
                   <Form.Control
                     type="text"
@@ -104,10 +115,10 @@ const Signup = () => {
                     onChange={onChangeInput}
                     required
                   />
-                  </FloatingLabel>
-                </Form.Group>
+                </FloatingLabel>
+              </Form.Group>
 
-                <Form.Group className="mb-3">
+              <Form.Group className="mb-3">
                 <FloatingLabel label="Password">
                   <Form.Control
                     type="password"
@@ -116,33 +127,41 @@ const Signup = () => {
                     onChange={onChangeInput}
                     required
                   />
-                  </FloatingLabel>
-                </Form.Group>
+                </FloatingLabel>
+              </Form.Group>
 
-                <Form.Group className="mb-3">
+              <Form.Group className="mb-3">
                 <FloatingLabel label="Gender">
                   <Form.Select name="gender" onChange={onChangeInput} required>
                     <option>Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </Form.Select>
-                  </FloatingLabel>
-                </Form.Group>
+                </FloatingLabel>
+              </Form.Group>
 
-                {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+              {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
 
-                <Button type="submit " variant="success" className="w-100 mb-3">
-                  Register
-                </Button>
-              </Form>
+              <Button type="submit " variant="success" className="w-100 mb-3">
+                {buttonLoad && (
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    aria-hidden="true"
+                  />
+                )}
+                Register
+              </Button>
+            </Form>
 
-              <p className="text-center mt-3">
-                Have registered?
-                <Nav.Link  href="/login">Login instead</Nav.Link>
-              </p>
-            </Col>
-          </Row>
-        </Container>
+            <p className="text-center mt-3">
+              Have registered?
+              <Nav.Link href="/login">Login instead</Nav.Link>
+            </p>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };

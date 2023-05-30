@@ -10,10 +10,10 @@ function MyNavbar() {
   const setLogout = async () => {
     const result = await Swal.fire({
       icon: "warning",
-      title: "Are you sure?",
-      text: "We will be miss",
+      title: `${data.name}, r you sure?`,
+      text: "We will be miss u",
       showCancelButton: true,
-      confirmButtonText: "Yes, i will go!",
+      confirmButtonText: "Yes, sure!",
       cancelButtonText: "No, cancel!",
     });
 
@@ -23,7 +23,7 @@ function MyNavbar() {
       Swal.fire({
         icon: "success",
         title: "You're log out",
-        text: `You can comeback anytime`,
+        text: `Goodbye, have a good day`,
         showConfirmButton: false,
         timer: 2000,
       });

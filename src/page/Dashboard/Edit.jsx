@@ -10,6 +10,7 @@ import {
   Col,
   Table,
   Alert,
+  Spinner
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { v4 as uuidv4 } from "uuid";
@@ -23,10 +24,12 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
   const [isPaid, setIsPaid] = useState(selectedTransaction.is_paid);
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [buttonLoad, setButtonLoad] = useState(false);
 
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
+      setButtonLoad()
       const transactionData = {
         code: `${selectedTransaction.code}`,
         date: date,
@@ -38,25 +41,6 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
           qty: item.qty,
         })),
       };
-
-      const isSameData =
-        selectedTransaction.date === transactionData.date &&
-        selectedTransaction.is_paid === transactionData.is_paid &&
-        JSON.stringify(selectedTransaction.items) ===
-          JSON.stringify(transactionData.items);
-
-          
-
-      if (isSameData) {
-        setIsEditing(false);
-        Swal.fire({
-          icon: "same all",
-          title: "Updated!",
-          text: `Transaction ${isSameData}'s successfully updated.`,
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      }
 
       await api.requests({
         method: "PUT",
@@ -190,7 +174,12 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
                         />
                       </td>
 
-                      <td n-title="sub">{subtotal(item).toLocaleString()}</td>
+                      <td n-title="sub">
+                        <Form.Control
+                          disabled
+                          value={subtotal(item).toLocaleString()}
+                        />
+                      </td>
                       <td n-title="Del" className="text-center">
                         <DashCircle
                           color="red"
@@ -228,12 +217,20 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
 
             <div className="d-flex justify-content-between mt-3">
               <Button
-                variant="outline-secondary"
+                variant="outline-danger"
                 onClick={() => setIsEditing(false)}
               >
                 Cancel
               </Button>
               <Button variant="success" className="fw-bold" type="submit">
+              {buttonLoad && (
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    aria-hidden="true"
+                  />
+                )}
                 Update
               </Button>
             </div>
