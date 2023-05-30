@@ -60,7 +60,9 @@ function Login() {
       dispatch(login(data.token));
       dispatch(setData(data.user));
     } catch (err) {
-      setErrorMessage(err.response.data.message);
+
+setButtonLoad(false)
+setErrorMessage(err.response.data.message);
     }
   }
 
@@ -68,7 +70,7 @@ function Login() {
     if (isAuth) {
       navigate("/");
     }
-  }, [isAuth, navigate]);
+  }, [isAuth]);
   return (
     <>
       <MyNavbar />
@@ -139,4 +141,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginsetButtonLoad(true)
