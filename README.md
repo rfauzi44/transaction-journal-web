@@ -21,7 +21,7 @@ Web Client for Transaction Journal. Built with React.
 1. [ RECOMMENDED ] Makes sure you have successfully installed [Transaction Journal API](https://github.com/rfauzi44/transaction-journal-api)
 
 ```bash
-test http://localhost:3000
+test http://localhost:3001
 ```
 
 1. Clone this project
