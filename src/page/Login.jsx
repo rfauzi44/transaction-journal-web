@@ -141,4 +141,4 @@ setErrorMessage(err.response.data.message);
   );
 }
 
-export default LoginsetButtonLoad(true)
+export default Login

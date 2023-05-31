@@ -8,7 +8,7 @@ import {
   Alert,
   Nav,
   FloatingLabel,
-  Spinner
+  Spinner,
 } from "react-bootstrap";
 import MyNavbar from "../component/MyNavbar";
 import { useNavigate } from "react-router-dom";
@@ -58,10 +58,12 @@ const Signup = () => {
         timer: 2000,
       });
 
+
       const data = res.data.data[0];
       dispatch(login(data.token));
       dispatch(setData(data.user));
     } catch (err) {
+      setButtonLoad(false);
       setErrorMessage(err.response.data.message);
     }
   };
