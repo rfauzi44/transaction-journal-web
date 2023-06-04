@@ -58,7 +58,6 @@ const Signup = () => {
         timer: 2000,
       });
 
-
       const data = res.data.data[0];
       dispatch(login(data.token));
       dispatch(setData(data.user));
@@ -148,7 +147,7 @@ const Signup = () => {
                 {buttonLoad && (
                   <Spinner
                     as="span"
-                    animation="grow"
+                    animation="border"
                     size="sm"
                     aria-hidden="true"
                   />

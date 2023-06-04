@@ -46,7 +46,7 @@ const ETable = ({ transactions, handleEdit, handleDelete, setIsAdding }) => {
                 transactions.map((transaction, i) => (
                   <tr key={transaction.id}>
                     <td className="fw-bold">{transaction.code}</td>
-                    <td>{format(new Date(transaction.date), "dd-MM-yyyy")}</td>
+                    <td>{format(new Date(transaction.date), "dd-MMM-yyyy")}</td>
                     <td>{transaction.total.toLocaleString()}</td>
                     <td>
                       <td>{transaction.is_paid ? "Paid" : "Unpaid"}</td>

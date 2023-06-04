@@ -63,6 +63,7 @@ const Add = ({ getTransactions, setIsAdding }) => {
 
       getTransactions();
     } catch (err) {
+      setButtonLoad(false);
       setErrorMessage(err.response.data.message);
     }
   };
@@ -235,7 +236,7 @@ const Add = ({ getTransactions, setIsAdding }) => {
                 {buttonLoad && (
                   <Spinner
                     as="span"
-                    animation="grow"
+                    animation="border"
                     size="sm"
                     aria-hidden="true"
                   />

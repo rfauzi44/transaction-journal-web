@@ -40,7 +40,7 @@ function Login() {
   async function setLogin(event) {
     event.preventDefault();
     try {
-      setButtonLoad(true)
+      setButtonLoad(true);
       const res = await api.requests({
         method: "POST",
         url: "/auth/login",
@@ -60,9 +60,8 @@ function Login() {
       dispatch(login(data.token));
       dispatch(setData(data.user));
     } catch (err) {
-
-setButtonLoad(false)
-setErrorMessage(err.response.data.message);
+      setButtonLoad(false);
+      setErrorMessage(err.response.data.message);
     }
   }
 
@@ -120,7 +119,7 @@ setErrorMessage(err.response.data.message);
                 {buttonLoad && (
                   <Spinner
                     as="span"
-                    animation="grow"
+                    animation="border"
                     size="sm"
                     aria-hidden="true"
                   />
@@ -141,4 +140,4 @@ setErrorMessage(err.response.data.message);
   );
 }
 
-export default Login
+export default Login;

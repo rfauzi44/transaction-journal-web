@@ -59,6 +59,7 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
       setIsEditing(false);
       getTransactions();
     } catch (err) {
+      setButtonLoad(false);
       setErrorMessage(err.response.data.message);
     }
   };
@@ -226,7 +227,7 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
               {buttonLoad && (
                   <Spinner
                     as="span"
-                    animation="grow"
+                    animation="border"
                     size="sm"
                     aria-hidden="true"
                   />
