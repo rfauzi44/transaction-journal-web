@@ -134,7 +134,7 @@ const Edit = ({ selectedTransaction, getTransactions, setIsEditing }) => {
             <h4 className="py-2 text-center fw-bold font-italic">item list</h4>
 
             <div id="no-more-tables">
-              <Table bordered hover className="col-md-12 table-condensed cf">
+              <Table bordered className="col-md-12 table-condensed cf">
                 <thead className="bg-light cf">
                   <tr>
                     <th>name</th>
